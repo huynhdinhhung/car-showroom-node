@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use('/api/cars', require('./routes/carRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
-
+app.use(express.static('public'));
 // Kết nối tới MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ Đã kết nối thành công tới MongoDB'))
