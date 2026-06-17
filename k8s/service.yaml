@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: car-showroom-service
+  namespace: default
+spec:
+  type: ClusterIP # Dùng IP nội bộ vì Pod đã mở cổng thẳng ra host mạng thông qua hostNetwork ở trên
+  selector:
+    app: car-showroom
+  ports:
+  - port: 5000
+    targetPort: 5000

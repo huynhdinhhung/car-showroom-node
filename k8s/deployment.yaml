@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-showroom-backend
+  namespace: default
+  labels:
+    app: car-showroom
+network: host
+spec:
+  replicas: 1 # Chạy 1 bản container (Pod)
+  selector:
+    matchLabels:
+      app: car-showroom
+  template:
+    metadata:
+      labels:
+        app: car-showroom
+    spec:
+      hostNetwork: true # Sử dụng mạng host để kết nối trực tiếp với MongoDB trên server
+      containers:
+      - name: car-showroom-app
+        image: car-showroom:latest # Hoặc link image trên Docker Hub của bạn nếu deploy từ xa
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
